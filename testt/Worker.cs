@@ -2,6 +2,9 @@ using testt.NewFolder;
 using SuperSimpleTcp;
 using System.Text;
 using System;
+using System.Runtime.CompilerServices;
+using Microsoft.Extensions.Options;
+using System.Text.Json;
 
 namespace testt;
 
@@ -19,15 +22,12 @@ public class Worker : BackgroundService
     // vou primeiro fazer aqui, depois metemos numa classe
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        //tirar do while...nem precisa dequele firstboot.
         SimpleTcpClient client = new SimpleTcpClient("127.0.0.1:4545");
         client.Connect();
         
-        //Console.ReadKey();
 
         while (!stoppingToken.IsCancellationRequested)
         {
-            //melhor
             if (client.IsConnected ==true  && _isFirstBoot == false)
             {
                 //em teoria, vai esta sempre a mandar
@@ -68,15 +68,35 @@ public class Worker : BackgroundService
 
     private void DataSent(object? sender, DataSentEventArgs e)
     {
+        //  Isto:"throw new NotImplementedException();" se este metodo for chamado, da uma exception e programa crasha. 
+        // É uma forma de te lembrares que nao esta implementado. Podes comentar se quiseres a linha debaixo ate ter logica para isto feita.
+        // ou apagas, your choice. Começa a experimentar estas coisas.
         throw new NotImplementedException();
     }
 
     private void DataReceived(object? sender, DataReceivedEventArgs received)
     {
-        //explora este evento depois
-        //nao vai fazer nada por enquanto
-        //ver se isto da
-        Console.WriteLine($"[{received.IpPort}] {Encoding.UTF8.GetString(received.Data.Array, 0, received.Data.Count)}");
+        // Vais buscar o teu json em "serie". Basicamente é uma string. "GeString" é um metodo de sistema e encoding esta como UTF8.
+        // Explora Econding..tens Encoding.ASCII, Encoding.UTF7 etc.
+        // PS: Se quiseres, podes colocar isso dentro "try". Assim, nao crasha se por alguma razao "GetString" nao funcionar.
+        string jsonParaDesreliazar = Encoding.UTF8.GetString(received.Data.Array, 0, received.Data.Count);
+
+        // Tenta desrelizar. Se der asneira, escreve erro na terminal.
+        try
+        {
+            //Magia aqui. Faz debug a esta linha e "Explora" "deserializedObjectPedro"
+            EstruturaDoPedro deserializedObjectPedro = JsonSerializer.Deserialize<EstruturaDoPedro>(jsonParaDesreliazar);
+            // Ex
+            Console.WriteLine(deserializedObjectPedro.var1.ToString());
+            
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+
+
     }
 
     private void Disconnected(object? sender, ConnectionEventArgs e)
@@ -99,4 +119,17 @@ public class Worker : BackgroundService
 
 
     }
+}
+
+public class EstruturaDoPedro
+{
+    // O mais improtante aqui para ti, é colocar os tipos de var iguais. Se no json var2 é int, aqui tambem tem que ser.
+    // BTW. Meti isto aqui a toa...devia estar num directorio que faça sentido no projeto.
+    public string var1 { get; set; }
+    public int var2 { get; set; }
+    public string var3 { get; set; }
+    public string var4 { get; set; }
+    public string var5 { get; set; }
+    public string var6 { get; set; }
+    public string var7 { get; set; }
 }
