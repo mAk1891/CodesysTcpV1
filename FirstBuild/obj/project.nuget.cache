@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eDYX32lpTuFul8HrWItivOlgFXZcDBtNwJja3fLilsIki9hPKKpedcfxIUx8eRaMJn77B9QuQuekGG3XEXZbow==",
+  "dgSpecHash": "3g52xNu04fmvC+nDAMMxmJboS95YEHqJ1anP8bc/B89j1zwt42Ppj3zCEco/Ev74zinPvBGZTsFrtW/EHUOU+g==",
   "success": true,
-  "projectFilePath": "C:\\==PedroSilva==\\==C#==\\CodesysTcp\\testt\\FirstBuild.csproj",
+  "projectFilePath": "C:\\==PedroSilva==\\==C#==\\CodesysTcp\\FirstBuild\\FirstBuild.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pedro.Silva\\.nuget\\packages\\microsoft.extensions.configuration\\7.0.0\\microsoft.extensions.configuration.7.0.0.nupkg.sha512",
     "C:\\Users\\Pedro.Silva\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",

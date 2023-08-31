@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\==PedroSilva==\\==C#==\\CodesysTcp\\testt\\FirstBuild.csproj": {}
+    "C:\\==PedroSilva==\\==C#==\\CodesysTcp\\FirstBuild\\FirstBuild.csproj": {}
   },
   "projects": {
-    "C:\\==PedroSilva==\\==C#==\\CodesysTcp\\testt\\FirstBuild.csproj": {
+    "C:\\==PedroSilva==\\==C#==\\CodesysTcp\\FirstBuild\\FirstBuild.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\==PedroSilva==\\==C#==\\CodesysTcp\\testt\\FirstBuild.csproj",
+        "projectUniqueName": "C:\\==PedroSilva==\\==C#==\\CodesysTcp\\FirstBuild\\FirstBuild.csproj",
         "projectName": "FirstBuild",
-        "projectPath": "C:\\==PedroSilva==\\==C#==\\CodesysTcp\\testt\\FirstBuild.csproj",
+        "projectPath": "C:\\==PedroSilva==\\==C#==\\CodesysTcp\\FirstBuild\\FirstBuild.csproj",
         "packagesPath": "C:\\Users\\Pedro.Silva\\.nuget\\packages\\",
-        "outputPath": "C:\\==PedroSilva==\\==C#==\\CodesysTcp\\testt\\obj\\",
+        "outputPath": "C:\\==PedroSilva==\\==C#==\\CodesysTcp\\FirstBuild\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
