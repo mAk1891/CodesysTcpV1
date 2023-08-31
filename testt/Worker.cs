@@ -3,7 +3,6 @@ using SuperSimpleTcp;
 using System.Text;
 using System;
 using System.Runtime.CompilerServices;
-using Microsoft.Extensions.Options;
 using System.Text.Json;
 
 namespace testt;
@@ -76,19 +75,34 @@ public class Worker : BackgroundService
 
     private void DataReceived(object? sender, DataReceivedEventArgs received)
     {
+        //niuce
         // Vais buscar o teu json em "serie". Basicamente é uma string. "GeString" é um metodo de sistema e encoding esta como UTF8.
         // Explora Econding..tens Encoding.ASCII, Encoding.UTF7 etc.
         // PS: Se quiseres, podes colocar isso dentro "try". Assim, nao crasha se por alguma razao "GetString" nao funcionar.
         string jsonParaDesreliazar = Encoding.UTF8.GetString(received.Data.Array, 0, received.Data.Count);
+        jsonParaDesreliazar = jsonParaDesreliazar.TrimEnd('\0'); //Da lhe
+
 
         // Tenta desrelizar. Se der asneira, escreve erro na terminal.
+        // DEBUG primeira, esquece play. alias. vou fazer uma coisa lol.fuckm, ia apagar play xD
+        // manda um json
         try
         {
             //Magia aqui. Faz debug a esta linha e "Explora" "deserializedObjectPedro"
-            EstruturaDoPedro deserializedObjectPedro = JsonSerializer.Deserialize<EstruturaDoPedro>(jsonParaDesreliazar);
-            // Ex
-            Console.WriteLine(deserializedObjectPedro.var1.ToString());
-            
+            dataMainStructure deserializedObjectPedro = JsonSerializer.Deserialize<dataMainStructure>(jsonParaDesreliazar);
+            // pois
+
+            Console.WriteLine(jsonParaDesreliazar);
+
+            for (int i = 0; i < jsonParaDesreliazar.Length; i++) 
+            {
+                Console.WriteLine(jsonParaDesreliazar.Count());
+                
+            }
+
+            //Console.WriteLine(deserializedObjectPedro.LocalJSONObj.var2.ToString());
+            //Console.WriteLine(deserializedObjectPedro.LocalJSONObj.var1.ToString());
+
 
         }
         catch (Exception e)
@@ -101,30 +115,26 @@ public class Worker : BackgroundService
 
     private void Disconnected(object? sender, ConnectionEventArgs e)
     {
-        
-        //Console.WriteLine(e.Reason);
+
         Console.WriteLine(e.IpPort);
         //nao vai fazer nada por enquanto
-
     }
 
     private void ConnectedEvent(object? sender, ConnectionEventArgs feedback)
-    {
-        
+    {       
         //Console.WriteLine(feedback.Reason);
         Console.WriteLine(feedback.IpPort);
         reconnectionAttempts++;
         Console.WriteLine($"Number of reconnections {reconnectionAttempts}");
 
-
-
     }
 }
 
-public class EstruturaDoPedro
+
+
+// Basicamente tens objeto dentro de objeto...so mudou isso.
+public class plcVars
 {
-    // O mais improtante aqui para ti, é colocar os tipos de var iguais. Se no json var2 é int, aqui tambem tem que ser.
-    // BTW. Meti isto aqui a toa...devia estar num directorio que faça sentido no projeto.
     public string var1 { get; set; }
     public int var2 { get; set; }
     public string var3 { get; set; }
@@ -132,4 +142,11 @@ public class EstruturaDoPedro
     public string var5 { get; set; }
     public string var6 { get; set; }
     public string var7 { get; set; }
+}
+
+// Esta classe, sao as tuas primeira "{}"
+// que contem ooutro objeto dentro.
+public class dataMainStructure
+{
+    public plcVars LocalJSONObj { get; set; }
 }
