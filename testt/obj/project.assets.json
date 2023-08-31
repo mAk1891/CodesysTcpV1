@@ -1566,9 +1566,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\==PedroSilva==\\==C#==\\CodesysTcp\\testt\\testt.csproj",
-      "projectName": "testt",
-      "projectPath": "C:\\==PedroSilva==\\==C#==\\CodesysTcp\\testt\\testt.csproj",
+      "projectUniqueName": "C:\\==PedroSilva==\\==C#==\\CodesysTcp\\testt\\FirstBuild.csproj",
+      "projectName": "FirstBuild",
+      "projectPath": "C:\\==PedroSilva==\\==C#==\\CodesysTcp\\testt\\FirstBuild.csproj",
       "packagesPath": "C:\\Users\\Pedro.Silva\\.nuget\\packages\\",
       "outputPath": "C:\\==PedroSilva==\\==C#==\\CodesysTcp\\testt\\obj\\",
       "projectStyle": "PackageReference",
